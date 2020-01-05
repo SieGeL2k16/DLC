@@ -1,0 +1,312 @@
+@DATABASE mEGA-dLC.guide
+@$VER: mEGA-dLC.guide V1.0 (01-25-98)
+@AUTHOR "Sascha 'SieGeL' Pfalz"
+@(c) "© 1997-98 (tRSi-iNNOVATiONs) / IN-Ovation Software"
+@REM Complete docs for mEGA-dLC.FIM
+@INDEX Main
+@WORDWRAP
+@WIDTH 78
+@node "Main" "mEGA-DLC Documentation V1.0 (01-25-98) - English version"
+     @{b}@{fg shine}@{s} ............................... ...............................
+     :::::::::: ...........:::::::::' `:::::::::..........  ..........
+     :::::::::: :::::::::: :::::::::: .......... :::::::::: ::::::::::
+     :::::::::: :::::::::: :::::::::: ::::::::::.:::::::::' ::::::::::@{ub}@{fg text}
+    @{b}--[@{ub} Mo! @{b}]--------.----@{ub} @{b}@{fg shine}::::::::::@{ub}@{fg text} @{b}---------------------@{ub} @{b}@{fg shine}::::::::::@{ub}@{fg text} @{b}--.@{ub}
+                     @{b}|@{ub}                 (tRSi-iNNOVATiONs)                @{b}|@{ub}
+                     @{b}`---------------------------------------------------'@{ub}@{us}
+
+                       @{s}iS pROUD tO pRESENT in 1998:@{us}
+
+                 
+                 @{fg shine}mEGA-dLC V1.0 - Download Counter for FAME@{fg text}
+
+
+       written & (c) by Sascha '@{"SieGeL" LINK CONTACT}' Pfalz of (tRSi/F-iNNOVATiON)
+
+        @{"  INTRODUCTION  " link "INTRO" 0} - Short overview & Requirements for mEGA-dLC
+        @{"  INSTALLATION  " link "INSTALLATION" 0} - How to install it to your System
+        @{"  CONFIGURATION " link "CONFIG" 0} - Description of the prefs file
+        @{"  HOW IT WORKS  " link "USAGE" 0} - Usage and Restrictions of mEGA-dLC
+        @{"GREETZ & CONTACT" link "CONTACT" 0} - Contact adresses and greetings
+                   
+
+             FAME is © 1993-98 by David 'Strider/tRSi' Wettig
+@endnode
+
+@NODE "INTRO" "Short overview and Requirements for mEGA-dLC"
+
+                               @{u}@{b}INTRODUCTION@{ub}@{uu}
+
+mEGA-DLC is a Download Counter utility for FAME BBS Systems. It was written
+during the fact that currently no counter utility exists for FAME and 
+many users requested it (mainly @{"dOUP & kORG" LINK "CONTACT"} ;). So here it is with the
+following features supported:
+
+ @{b}-@{ub} FAME only door, could be loaded @{b}resident@{ub} for faster access
+
+ @{b}-@{ub} Extreme fast, requires @{b}about 1 second waiting time@{ub} for the user, 
+   the rest of the work will be done in Background, meaning that the User 
+   is able to continue the work in FAME without waiting for mEGA-DLC to 
+   finish
+
+ @{b}-@{ub} Supports @{b}different counter styles@{ub} (even in color) for @{b}every conference@{ub}
+   with free format options
+
+ @{b}-@{ub} Easy to use Config (Textfile) with standard AmigaOS 2.x parameter format
+
+ @{b}-@{ub} Intelligent search algorithmus with less memory usage, requires about @{b}50kB@{ub}
+   of memory when scanning a @{b}1MB Dirlisting@{ub} !
+
+ @{b}-@{ub} Is able to suppress local downloads and also the whole output of the door
+
+ @{b}-@{ub} Whole program is only @{b}11kB@{ub} in size (but 100% C Code!) and highly optimized,
+   also processor depending program versions are available!
+
+
+                               @{u}@{b}REQUIREMENTS:@{uu}@{ub}
+
+         mEGA-DLC requires the following things to work properly:
+
+ @{b}-@{ub} @{fg shine}Kickstart V3.0@{fg text} or higher (usage of mem pools etc.)
+
+ @{b}-@{ub} @{fg shine}FAME V1.29+@{fg text} installed and working (if you use lower Versions, mEGA-DLC
+   won't be able to count serial downloads during a small bug in FAME, this
+   is fixed for all Versions upto V1.29+ !)
+
+ @{b}-@{ub} Some filelistings to use the counter for ;)
+
+@ENDNODE
+
+@NODE "INSTALLATION" "How to install mEGA-dLC to your System"
+
+                               @{u}@{b}INSTALLATION@{uu}@{ub}
+
+You should use the supplied Installer Script to install mEGA-DLC to your
+System. However, if you really want to install it manually, please follow
+the above instructions to install it to your FAME System:
+
+
+Start SysEditor and go to @{b}Doors Section@{ub}.
+
+Switch the DoorType to '@{b}SYSCMD@{ub}' and enter as Name for the door '@{b}DLSTAT@{ub}'. This
+type of SYSCMD will be called each time a download from an user is completed.
+
+Now set the path to the program, define a stack of 4096 Bytes and set the
+Accesslevel to your requirements. 
+
+@{b}NOTE:@{ub} If you wish to use mEGA-dLC resident, you have to enter the following line
+      to your @{fg shine}FAME:Settings/FAMEStart.bat@{fg text} file:
+
+
+                 @{fg shine}RESIDENT <LOCATION_OF_mEGA-dLC.FIM> PURE@{fg text}
+
+
+If you use it as resident command, be sure that you @{b}WON'T@{ub} give the full path to
+the door, instead write only the filename without the path (i.e. mEGA-dLC.FIM)
+so the AmigaDOS loader will use the resident version, not the one that's stored
+on your Disk!
+
+Now Set @{b}MOD.Type@{ub} to @{b}FIM@{ub} and switch on @{b}MultiNode@{ub} Support. 
+
+At least select the Command Allow Gadgets @{b}NR@{ub}, @{b}SR@{ub}, @{b}AR@{ub}, @{b}RD@{ub} and save these settings. 
+
+That's all for the FAME installation, now go on with the @{"configuration" LINK "CONFIG"} of 
+mEGA-DLC.
+
+@ENDNODE
+
+@NODE "CONFIG" "How to configure mEGA-dLC to your requirements"
+
+
+                        @{u}@{b}CONFIGURATION OF MEGA-DLC:@{uu}@{ub}
+
+Mega-DLC requires a file called @{fg shine}mEGA-DLC.cfg@{fg text} which has to be copied or
+created in the following directory: 
+
+                           @{fg shine}FAME:ExternEnv/Doors/@{fg text}
+
+If no config file could be found, mEGA-DLC uses the default settings, 
+which affects all conferences and uses the following string as counter:
+
+                              @{fg shine}Downloaded->%ld@{fg text}
+
+If you want to have only some of your conferences to use for the counting,
+create a Textfile called @{b}FAME:ExternEnv/Doors/mEGA-DLC.cfg@{ub} containing the 
+following Options:
+
+@{b}COUNTERLOOK.<X>@{ub} - Defines the Counter to use for conference <@{b}X@{ub}>. Please note
+                  that you have to enter the '@{b}%ld@{ub}' sign to indicate where
+                  the counter should stand.
+
+@{b}COUNTERPOS.<X>@{ub}  - Defines the position of the counter inside your Counter
+                  string. 
+
+
+Here's a small example: Imagine you have the following counter defined for 
+Conference 1:
+
+                       @{fg shine}COUNTERLOOK.1=Downloaded->%ld@{fg text}
+
+...Then you have to define the counter position as follows: 
+
+                             @{fg shine}COUNTERPOS.1=12@{fg text}
+
+...because the @{b}%ld@{ub} starts at char position @{b}12@{ub} (begin the count from @{b}0@{ub} !). 
+Look at this to make it more clear:
+                                                 .------Start of '%ld' Sign!
+                                                 |
+                                     012345678901234567890
+                       COUNTERLOOK.1=Downloaded->%ld
+                        COUNTERPOS.1=12
+
+So as you see, the '@{b}%@{ub}' sign starts at position @{b}12@{ub}...i think it should be 
+clear how this should be setup. If you plan to enter also colour counters,
+remember to count the ESC sequences char by char not only one ESC sequence
+as one Char, because the Read() Function doesn't know anything about ESC
+sequences and interpret them as single chars. But please look also to
+the chapter @{"RESTRICTIONS" LINK "USAGE"} below for a complete description! You may also
+enhance the counter that @{b}leading zeros@{ub} should be displayed, and you may
+also define @{b}how many digits the counter should contain@{ub}. Simply change
+the @{b}%ld@{ub} to i.e. @{b}%2.2ld@{ub}, which means @{b}2@{ub} digits counter, show leading zero
+if counter is below 10.
+
+There exists also some other options to define:
+
+                      @{fg shine}ALLOW_LOCAL_DOWNLOADS=<YES|NO>@{fg text}
+
+Set this to @{b}YES@{ub} means that also local downloads will be counted. This is
+also the @{b}default setting@{ub} if this option is not available/found inside the
+configuration. If you don't want to have Local Downloads to be counted,
+just set this Option to @{b}NO@{ub} and mEGA-DLC will skip all local downloads.
+
+
+                         @{fg shine}SKIP_ALL_OUTPUT=<YES|NO>@{fg text}
+
+If you won't wish that anybody see the usage of mEGA-dLC, set this 
+option to @{b}YES@{ub}, in this case mEGA-DLC won't display any text to the
+screen. @{b}Default setting is YES@{ub}.
+
+I think the configuration scheme should be clear, you may also found 
+additional infos inside the mEGA-dLC.cfg file itself. Please note that
+you only have to define the counters for the conferences you wish to 
+have counted the files, it's not neccessary to enter the counters and
+their according positions for every conference, only for those you wish
+to have the countings!
+
+Please look in any case to the chapter @{"USAGE & RESTRICTIONS" LINK USAGE} for further 
+informations !!!
+
+@ENDNODE
+
+@NODE "USAGE" "Usage and Restrictions of mEGA-dLC"
+
+                                   @{u}@{b}USAGE@{ub}@{uu}
+
+Simple, just download some files of the conferences you have defined a 
+counter for and after Downloading, you will notice that your Computer 
+works for some seconds, after this the counter string is added to your 
+filelist. Please note that all conferences for which you haven't defined
+a Counterstring will be skipped for adding the counter, so it's easy to 
+define only the conferences where you would like the counter to be added.
+All other conferences will be skipped silently. mEGA-dLC also checks if 
+the actual login is local and if it's allowed to count also local downloads.
+Additional mEGA-DLC also checks if the download was a success (at least 
+@{b}ONE@{ub} file was dl'ed) and if it's one of the normal download procedures, not from 
+doors or mails. If all these conditions are succeeded, mEGA-DLC will start 
+it's work, else it will quiet silently. 
+
+Should it happen that during the processing of the dirs an error occures,
+mEGA-dLC will write an error message to the file:
+
+                      @{fg shine}FAME:ExternEnv/mEGA-dLC.errors@{fg text}
+
+This was required because the communication with FAME is only valid until
+mEGA-dLC has got all required informations, and this takes only seconds to
+perform and therefor an external File has to be used to inform you about 
+any errors. 
+If you ever found such a textfile and the error listed is some kind of 
+"abnormal" (i.e. Memory probs but enough RAM is there..), please @{"contact" LINK "CONTACT"} me
+and post me your errors logfile including the directory listing from which
+the error occures to gain some informations about the reason of the failure
+
+
+                               @{u}@{b}RESTRICTIONS:@{ub}@{uu}
+
+@{fg shine}DURING THE FACT THAT mEGA-DLC MODIFIES THE DIRLISTING, SOME RESTRICTIONS
+EXISTS IN CONJUNCTION WITH OTHER PROGRAMS. PLEASE NOTE THE FOLLOWING WORDS
+VERY *EXACTLY* AND ALWAYS TAKE ACCOUNT ON THEM, IT'S REALLY IMPORTANT TO READ
+THESE THINGS CAREFULLY TO BE SURE THAT EVERYTHING WORKS LIKE YOU WANT IT !@{fg text}
+
+@{b}1) NewFiles from Byteandi & meGA-DLC:@{ub}
+
+NewFiles has @{b}REALLY@{ub} big problems when using colorized Counters! ByteAndi
+interprets the ESC codes of a counterstring as some kind of special chars
+and moves the descriptionline where the counter stands to the right by the
+amount of ESC chars found in the counterstring. This is not fixable by me, 
+as ByteAndi has a made a bug when interpreting the dirlisting! It's really 
+recommended to use only ASCII counters as long as no other NewFiles program
+exists which doesn't have this problem anymore! I don't know how Aquascan
+manage this, if anyone gots experience with this scanner, feel free to 
+contact me !
+
+@{b}2) FileID from ByteAndi & mEGA-dLC:@{ub}
+
+ByteAndi's FileID has an option called @{b}RELEASE_DAY@{ub}, which has the effect
+that FileID tries to read out the creation date from the File_ID.DIZ of the
+processed file and write it into the Dirlisting. But ByteAndi has done this
+with a trick, which is now very very nasty in conjunction with mEGA-dLC: 
+The Release Date will be inserted in the Dirlisting by some ESC Control 
+codes!
+This is done by moving the cursor at the end of the first line of the 
+description back to the beginning of the line and rewrite at the beginning 
+the Release_Date. 
+Well, as this is not the real location of the Release Date (it always
+stands at the end of the first line, not in the beginning of the second!), 
+the effect appears that NewFiles will show the Downloadcounter, but this will
+be overwritten immediatly by the FileID via the ESC control chars! I really
+recommend to switch off this feature to allow NewFiles to show the counter
+for every file! If you don't switch it off, only those files without the
+release date have the counter visible ! 
+
+As far as I know this won't happen when using the DCN!FileID by Derrow!
+@ENDNODE
+
+@NODE "CONTACT" "Greetings and Contact adresses"
+
+                                 @{u}@{b}GREETINGS@{ub}@{uu}
+
+Greets must go to the following people:
+
+ - dOUP & kORG for givin' me the idea for this program, hope it does
+   everthing you wanted ;)
+
+ - Strider/tRSi for fixing the annoying bug in FAME V1.29 so faast ;)
+
+ - aRGON/tRSi for testing out this version, even if his network doesn't
+   work ;) As always, Microshit has prooven again their incompetence ;)
+
+ - All my registered Users and betatesters...would be nice to hear more
+   from you guys in the future...
+
+ - Of course the whole TRSI-Group (which is by far the best ;) and 
+   specially Vampire/tRSi for the possibility to have our own WWW-Pages
+   online (adresses see below!)
+
+         1998 - The year where the Amiga strikes back (hopefully!)
+
+
+                             @{u}@{b}CONTACT ADRESSES@{ub}@{uu}
+
+If you want to report anything for this or any other door written by me,
+feel free to contact me via the following channels:
+
+
+                     @{b}BBS:@{ub} +49(0)30 614 25 51 (V34+)  
+
+                        @{b}E-MAIL:@{ub} siegel@trsi.de
+
+                        @{b}FIDO:@{ub} 171:600/100.0@aganet
+
+              @{b}WWW:@{ub} http://www.trsi.de/inno/siegel/index.html
+
+@ENDNODE

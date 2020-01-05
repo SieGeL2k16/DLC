@@ -1,0 +1,105 @@
+*****************************************************************************
+*                   mEGA-DLC by SieGeL (tRSi/F-iNNOVATiON)                  *
+*****************************************************************************
+
+V0.1   (08-09-97) - First complete Version (Requires FAME V1.29+ !)
+                    mEGA-dLC is a Download counter door for FAME that uses
+                    a high optimized and very fast algorithmus to find all 
+                    downloaded files in all conferences, has free 
+                    configurable counters for every conference and is
+                    100% FAME only and resident. The configfile is not
+                    neccessary, but allows to define individual counters
+                    for every conference and also the option to disable
+                    local downloads is only accessable via the configfile.
+                    The configfile is a ASCII Textfile with standard 
+                    Kick 2.04+ ReadArgs() parameters, so it's easy to 
+                    configure.
+
+V0.2   (08-16-97) - MAJOR BUGFIXING, ALL BUGS REPORTED BY RAMSES & PASO:
+
+                   -When using mEGA-DLC.FIM resident, it won't find any 
+                    longer the config file, because Resident Programs have
+                    no Homedirectory! To avoid these confuseness, the config
+                    file of mEGA-DLC has to be stored now in the directory:
+
+                                     FAME:ExternEnv/Doors/
+
+                    This is also the dir where the errorlogfile will be 
+                    stored, so make sure that you put the config in this
+                    directory!
+
+                   -mEGA-DLC.FIM had problems with similiar filenames, i.e.
+                    if you have AYS-TIME.LHA stored before the file TIME.LHA,
+                    and you download TIME.LHA, the counter where added to
+                    the file AYS-TIME.LHA, not to TIME.LHA. Now fixed,
+                    before adding the counter a full check will be done if
+                    it's really the correct filename and only if a 100%
+                    match is found, the counter will be added. All these
+                    additional checks costs about 0.2sec more time, but
+                    this shouldn't be the problem ;)
+
+                   -If you have defined a counterlook with leading spaces,
+                    those spaces where cutted off instead of using them as
+                    counterstring! Now fixed, you may now define as many 
+                    leading spaces as you wish, they won't be cutted anymore.
+
+V0.3   (08-25-97)  -Small enhancement:
+
+                   *SUGGESTION FROM ENZO:
+                    mEGA-DLC supports now leading zeros for the DL Counter,
+                    simply enhance your DL Counter i.e. with %2.2ld instead
+                    of only writing %ld, this will result in a 2 chars long
+                    counter with a leading zero if required. No further
+                    changings are neccessary for your counter strings.
+
+                   +Recompiled the code with SAS/C V6.58
+
+V0.4   (10-29-97) - MAJOR UPDATE ! (Sorry for the long delay....)
+
+                   *After heavy testing, I've found out that the search
+                    algorithm doesn't work correctly for mEGA-DLC, so I've
+                    decided to rewrite the whole search & add functions. 
+                    This function is a bit slower of course, but it's also
+                    much more stable than previous versions. Please note
+                    that the adding of empty lines in case of one line 
+                    descriptions is not working yet, so please use this with
+                    care and don't blame me if you have destroyed your dirs!
+
+                   *Rewritten all memory allocations to pool functions to 
+                    avoid heavy memory fragmentations, this result in using
+                    this door only under Kickstart V3.x !!! Memory usage is
+                    by default about 100kB to be on the safe side, this is
+                    enough for about 2000 files for one dirlisting!
+
+V0.5  (01-04-98)  - Pre-Release Version, currently only for Betas!
+
+                   *SUGGESTION FROM KORG:
+                    Added new Config option "SKIP_ALL_OUTPUT=<YES|NO>".
+                    This allows to disable all textoutput of mEGA-dLC.
+                    Defaults to NO.
+
+                   +Finally the support for single-line descriptions is
+                    finished.
+                    mEGA-dLC will append a new line into your dirlisting 
+                    if the description has only one line without Sentby
+                    or similar lines. This will of course slow down the
+                    whole operation process, but you could be sure that 
+                    your dirlisting keeps intact!
+
+V1.0  (01-25-98)  - PUBLIC RELEASE VERSION
+
+-----------------------------------------------------------------------------
+
+                            For contact & info:
+
+    ___________________________ _____ ______________________________
+  __\                          \\___//                             /__/_
+  \    Name: Sascha 'SieGeL' Pfalz - Leader of (tRSi-iNNOVATiONs)    /
+   \     FAME Developer and Programmer - E-Mail: siegel@trsi.de     /
+    \       HTTP: http://www.trsi.de/inno/siegel/index.html        /
+    /     Member of Team *AMIGA* and the Amiga RC5 Challenge       \
+   /________________________________________________________________\.vK
+
+
+--------------------------------------------------------------------[EOF]----
+
